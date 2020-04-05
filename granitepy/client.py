@@ -90,12 +90,12 @@ class Client:
         node.players[guild.id] = player
         return node.players[guild.id]
 
-    def get_player(self, guild: discord.Guild, cls: typing.Type[Player] = Player):
+    def get_player(self, guild: discord.Guild, cls: typing.Type[Player] = Player, **kwargs):
 
         if not self.nodes:
             raise exceptions.NoNodesAvailable("There are no nodes available.")
 
         if guild.id not in self.players.keys():
-            self.create_player(guild, cls)
+            self.create_player(guild, cls, **kwargs)
 
         return self.players[guild.id]
